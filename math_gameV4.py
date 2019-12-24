@@ -157,8 +157,7 @@ class math_app():
 
     def gui(self):
         root = Tk()
-        w, h = root.winfo_screenwidth(), root.winfo_screenheight()
-        root.geometry("%dx%d+0+0" % (w, h))
+        root.geometry("1366x768")
         root.resizable(True,True)
         root.title("Math Game")
         labelfont = ('Ubuntu', 20, 'bold')
