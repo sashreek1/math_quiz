@@ -6,6 +6,7 @@ string = ''
 for i in text:
     txt = i+'\t\t,\t\t'
     string+=txt
+string = string[:-5]
 new_file.write(string)
 new_file.close()
 que_file.close()
