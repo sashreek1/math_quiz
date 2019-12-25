@@ -39,14 +39,14 @@ class math_app():
 
     def placeques(self, frame, text):
         q = Label(frame, text=text, anchor=CENTER)
-        q.place(x=10,y=10)
-        q.config(font=("Times",28,"bold"))
+        q.place(x=10,y=40)
+        q.config(font=("Times",20,"bold"))
 
     def placeans(self, frame, text):
         for i in range(len(text)):
             q = Label(frame, text=text[i], anchor=CENTER)
-            q.place(x=20, y=40*3*i)
-            q.config(font=("Times",28,"bold"))
+            q.place(x=20, y=80*(i+0.5))
+            q.config(font=("Times",20,"bold"))
 
     def sub (self,text,root):
         self.numteams = int(text)
@@ -111,8 +111,8 @@ class math_app():
     def sub_func(self,ansvar,teamvar,f2,f3,root):
         ans = ansvar.get()
         team = teamvar.get()
-        self.cur_team.set("Your group")
-        self.cur_ans.set("Your option")
+        self.cur_team.set("Select group")
+        self.cur_ans.set("Select option")
         ques_no = self.sub_counter//self.numteams
         if team in self.donelst:
             self.sub_counter -= 1
@@ -140,11 +140,11 @@ class math_app():
             try:
                 f2.destroy()
                 f3.destroy()
-                f2 = Frame(root, height=515, width=920, borderwidth=2)
-                f2.place(x=7, y=10)
+                f2 = Frame(root, height=340, width=640, borderwidth=2)
+                f2.place(x=26, y=10)
                 f2.config(relief=RIDGE)
-                f3 = Frame(root, height=515, width=920, borderwidth=2)
-                f3.place(x=927, y=10)
+                f3 = Frame(root, height=340, width=640, borderwidth=2)
+                f3.place(x=700, y=10)
                 f3.config(relief=RIDGE)
                 f2.pack_propagate(0)
                 f3.pack_propagate(0)
@@ -160,55 +160,55 @@ class math_app():
         root.geometry("1366x768")
         root.resizable(True,True)
         root.title("Math Game")
-        labelfont = ('Ubuntu', 20, 'bold')
+        labelfont = ("Times",20,"bold")
 
-        f1 = Frame(root, height=460, width=1840, borderwidth=2)
-        f1.place(x=7,y=540)
+        f1 = Frame(root, height=340, width=1345, borderwidth=2)
+        f1.place(x=7,y=360)
         f1.config(relief=SUNKEN)
 
-        f2 = Frame(root, height=515, width=920, borderwidth=2)
-        f2.place(x=7,y=10)
+        f2 = Frame(root, height=340, width=640, borderwidth=2)
+        f2.place(x=26,y=10)
         f2.config(relief=RIDGE)
         f2.pack_propagate(0)
 
-        f3 = Frame(root, height=515, width=920, borderwidth=2)
-        f3.place(x=927, y=10)
+        f3 = Frame(root, height=340, width=640, borderwidth=2)
+        f3.place(x=700, y=10)
         f3.config(relief=RIDGE)
         f3.pack_propagate(0)
 
-        f4 = Frame(f1, height=445, width=650, borderwidth=2)
-        f4.place(x=595, y=10)
+        f4 = Frame(f1, height=300, width=720, borderwidth=2)
+        f4.place(x=280, y=20)
         f4.config(relief=RIDGE)
 
         l1 = Label(f4, text="Pick your group : ")
-        l1.place(x=80, y=40)
+        l1.place(x=110, y=30)
         l1.config(font=labelfont)
         l1.config(height=3, width=20)
 
         OPTIONS = self.teamlist
         self.cur_team = StringVar(root)
-        self.cur_team.set("Your group")
+        self.cur_team.set("Select group")
         popupMenu = OptionMenu(f4, self.cur_team, *OPTIONS)
-        popupMenu.place(x=357, y=72)
+        popupMenu.place(x=427, y=45)
         popupMenu.config(font=labelfont)
 
         l1 = Label(f4, text="Pick your answer : ")
-        l1.place(x=80, y=190)
+        l1.place(x=110, y=130)
         l1.config(font=labelfont)
         l1.config(height=3, width=20)
 
         OPTIONS = [1,2,3,4]
         self.cur_ans = StringVar(root)
-        self.cur_ans.set("Your option")
+        self.cur_ans.set("Select option")
         popupMenu = OptionMenu(f4, self.cur_ans, *OPTIONS)
-        popupMenu.place(x=357, y=222)
+        popupMenu.place(x=427, y=145)
         popupMenu.config(font=labelfont)
 
         self.placeques(f2, self.quelst[0].question)
         self.placeans(f3, self.quelst[0].options)
 
-        b = Button(f4, text = "Submit", width=10, height=2, font = labelfont, command=lambda : self.sub_func(self.cur_ans,self.cur_team,f2,f3,root))
-        b.place(x=220,y=350)
+        b = Button(f4, text = "Submit", width=8, height=1, font = labelfont, command=lambda : self.sub_func(self.cur_ans,self.cur_team,f2,f3,root))
+        b.place(x=300,y=230)
 
 
         root.mainloop()
